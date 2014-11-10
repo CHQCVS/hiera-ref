@@ -11,14 +11,14 @@ configuration used is defined below.
 
 ---
 :hierarchy:
-    - %{::fqdn}
+    - hosts/%{::fqdn}
     - %{project}/stage/%{stage}
     - %{project}/flavor/%{flavor}
     - %{project}/role/%{role}
     - %{project}/environment/%{environment}
     - %{project}/default
-    - %{region}
     - common/stage/%{stage}
+    - common/region/%{region}
     - common/default
 
 ```
