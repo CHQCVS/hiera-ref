@@ -1,0 +1,13 @@
+---
+
+# ----------------------------------------------------------------------------
+#   Role specific configuration data
+# ----------------------------------------------------------------------------
+#  These are configuration parameters that are used by the github_clone class
+#  declared at the project level.  Note the use of a branch parameter, which
+#  denotes a tag corresponding to a release of the content.
+# ----------------------------------------------------------------------------
+github.source: 'git@github.com:CHQCVS/resources.git'
+github.branch: 'tiddly-wiki-5'
+github.path: 'tiddly-wiki'
+github.outdir: '/var/www/html/wiki'

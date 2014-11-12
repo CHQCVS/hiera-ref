@@ -1,0 +1,14 @@
+---
+
+# ----------------------------------------------------------------------------
+#   Project specific configuration data
+# ----------------------------------------------------------------------------
+#  Classes declared at this level should apply to all sub-types of this
+#  project.  Since this is project for deploy static web servers, all roles
+#  will need Apache installed ('profile::httpd'), and have static web content
+#  ('profile::github_clone').
+# ----------------------------------------------------------------------------
+
+classes:
+    - profile::httpd
+    - pokey::github_clone

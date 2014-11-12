@@ -1,0 +1,73 @@
+---
+
+# ----------------------------------------------------------------------------
+#   config.classes
+# ----------------------------------------------------------------------------
+# This is an array of classes to apply during the config phase.  Declaring
+# pokey::yum_repos will:
+#   * Add all YUM repositories defined in the struct "yum_repos" to the system.
+#     See the example below.
+#
+# The above struct is merged using `hiera_hash`, so all hierarchies are
+# merged for the final value.  So all classes defined in a wide scope should
+# have a "no op" default behaviour unless configured with a parameter,
+# assuming you do not want them to apply to all projects and roles.
+# ----------------------------------------------------------------------------
+config.classes:
+    - pokey::yum_repos
+
+
+# ----------------------------------------------------------------------------
+#   bootstrap.classes
+# ----------------------------------------------------------------------------
+# This is an array of classes to apply during the bootstrap phase.  Declaring
+# pokey::bootstrap provides three things, none of which will fail if you do
+# not configure them.  This class will:
+#   * First install a package named "${project}-automation" if
+#     "automation.version" is defined.
+#   * Install all packages defined in the struct "automation_packages".
+#     See documentation in the 'profile::pkg_install' resource type, or see the
+#     example provided under 'example' project.
+#   * Install all installables defined in the struct "bootstrap".  This
+#     allows users to install packages, Puppet modules, and tarballs.  See
+#     documentation in the 'pokey::pkg_install' resource type.
+#
+# The above structs are merged using `hiera_hash`, so all hierarchies are
+# merged for the final value.  So all classes defined in a wide scope should
+# have a "no op" default behaviour unless configured with a parameter,
+# assuming you do not want them to apply to all projects and roles.
+# ----------------------------------------------------------------------------
+bootstrap.classes:
+    - pokey::bootstrap
+
+
+# ----------------------------------------------------------------------------
+#   classes
+# ----------------------------------------------------------------------------
+# This is an array of classes to apply during the main phase.  Declaring
+# pokey::packages will:
+#   * Install all packages defined in the struct "packages".
+#     See documentation in the 'profile::pkg_install' resource type, or see the
+#     example provided under 'example' project.
+#
+# The above struct is merged using `hiera_hash`, so all hierarchies are
+# merged for the final value.  So all classes defined in a wide scope should
+# have a "no op" default behaviour unless configured with a parameter,
+# assuming you do not want them to apply to all projects and roles.
+# ----------------------------------------------------------------------------
+classes:
+    - pokey::packages
+
+
+# ----------------------------------------------------------------------------
+#   yum_repos
+# ----------------------------------------------------------------------------
+# Define a root YUM repository for all projects and roles to use.  For more
+# details, see the 'profile::yum_repo' resource type.
+# ----------------------------------------------------------------------------
+yum_repos:
+    repo1:
+        name: 'CentOS-64'
+        baseurl: 'http://vault.centos.org/6.4/os/x86_64/'
+        descr: 'Centos 6.4 YUM Repo'
+
