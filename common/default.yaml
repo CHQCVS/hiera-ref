@@ -8,7 +8,7 @@
 #   * Add all YUM repositories defined in the struct "yum_repos" to the system.
 #     See the example below.
 #
-# The above struct is merged using `hiera_hash`, so all hierarchies are
+# The struct below is merged using `hiera_hash`, so all hierarchies are
 # merged for the final value.  So all classes defined in a wide scope should
 # have a "no op" default behaviour unless configured with a parameter,
 # assuming you do not want them to apply to all projects and roles.
@@ -32,7 +32,7 @@ config.classes:
 #     allows users to install packages, Puppet modules, and tarballs.  See
 #     documentation in the 'pokey::pkg_install' resource type.
 #
-# The above structs are merged using `hiera_hash`, so all hierarchies are
+# The struct below is merged using `hiera_hash`, so all hierarchies are
 # merged for the final value.  So all classes defined in a wide scope should
 # have a "no op" default behaviour unless configured with a parameter,
 # assuming you do not want them to apply to all projects and roles.
@@ -50,7 +50,7 @@ bootstrap.classes:
 #     See documentation in the 'profile::pkg_install' resource type, or see the
 #     example provided under 'example' project.
 #
-# The above struct is merged using `hiera_hash`, so all hierarchies are
+# The struct below is merged using `hiera_hash`, so all hierarchies are
 # merged for the final value.  So all classes defined in a wide scope should
 # have a "no op" default behaviour unless configured with a parameter,
 # assuming you do not want them to apply to all projects and roles.
