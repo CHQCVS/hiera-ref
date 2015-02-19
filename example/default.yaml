@@ -1,0 +1,57 @@
+---
+
+# ----------------------------------------------------------------------------
+#   This is a contrived example of how to configure Pokey to install *your*
+#   software.  This example adds a new YUM repository, from which "ansible"
+#   will be installed.  This would allow you to use "ansible" as your
+#   automation software.  However, you must create a Pokey provider to execute
+#   during the proper phase to actually take advantage of that.  This example
+#   does not show how that is done.
+#
+#   In addition, this example installs a tarball from the central Maven
+#   repository.  This is just an example and the installed software doesn't
+#   do anything meaningful on its own.  Only the "tar.gz" packaging type is
+#   currently supported (not "tgz").
+# ----------------------------------------------------------------------------
+
+
+# ----------------------------------------------------------------------------
+#   Enable EPEL Repo
+# ----------------------------------------------------------------------------
+
+yum_repos:
+    epel:
+        name: 'EPEL-6'
+        baseurl: 'http://dl.fedoraproject.org/pub/epel/6/x86_64/'
+        descr: 'EPEL 6 YUM Repo'
+
+
+# ----------------------------------------------------------------------------
+#   Packages to install during the bootstrap phase
+# ----------------------------------------------------------------------------
+
+automation_packages:
+    pkg1:
+        name: 'ansible'
+        version: '1.8.2-3'
+
+
+# ----------------------------------------------------------------------------
+#   Install custom tarball.  This also occurs during the bootstrap phase.
+#   Custom tarballs must be hosted in a Maven (or compatible) repository, the
+#   location of which must be defined in 'nexus.repo'.
+# ----------------------------------------------------------------------------
+
+nexus.repo: 'http://repo1.maven.org/maven2/'
+
+bootstrap:
+    targzs:
+        tarball1:
+            path: '/usr/local'
+            chown: 'root:root'
+            ensure: 'present'
+            group: 'com.linkedin.parseq'
+            artifact: 'parseq-tracevis'
+            version: '1.4.2'
+            packaging: 'tar.gz'
+
